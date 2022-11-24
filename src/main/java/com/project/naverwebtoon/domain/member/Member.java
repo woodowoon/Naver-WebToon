@@ -9,11 +9,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 public class Member {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long num;
-
     private String Id;
     private String pwd;
     private String email;
@@ -23,5 +19,4 @@ public class Member {
 
     @Enumerated(EnumType.STRING)
     private Account_info info;
-
 }
