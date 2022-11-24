@@ -19,8 +19,8 @@ public class InitDB {
     @PostConstruct
     public void init() {
         initService.insert_admin_member();
-        // initService.insert_user_member();
-        // initService.insert_writer_member();
+        initService.insert_user_member();
+        initService.insert_writer_member();
     }
 
     @Component
