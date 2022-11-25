@@ -34,6 +34,5 @@ public class Notice {
 
     @Enumerated(EnumType.STRING)
     private Lockable lock;
-
-
+    
 }
