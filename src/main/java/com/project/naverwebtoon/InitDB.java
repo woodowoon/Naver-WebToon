@@ -1,8 +1,8 @@
 package com.project.naverwebtoon;
 
-import com.project.naverwebtoon.domain.member.entity.Account_info;
-import com.project.naverwebtoon.domain.member.entity.Grade;
-import com.project.naverwebtoon.domain.member.entity.Member;
+import com.project.naverwebtoon.domain.member.Account_info;
+import com.project.naverwebtoon.domain.member.Grade;
+import com.project.naverwebtoon.domain.member.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -57,9 +57,6 @@ public class InitDB {
             admin_Member.setInfo(info);
 
             return admin_Member;
-
         }
-
     }
-
 }
