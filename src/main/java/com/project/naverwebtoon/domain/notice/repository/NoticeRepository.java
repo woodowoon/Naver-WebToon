@@ -20,4 +20,11 @@ public class NoticeRepository {
         em.persist(notice);
     }
 
+    /**
+     * 공지사항 조회
+     */
+    public Notice findOne(Long num) {
+        return em.find(Notice.class, num);
+    }
+
 }
