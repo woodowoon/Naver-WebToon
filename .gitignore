@@ -276,3 +276,5 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+java/lang/annotations.xml
