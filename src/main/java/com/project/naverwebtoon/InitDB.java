@@ -21,6 +21,7 @@ public class InitDB {
         initService.insert_admin_member();
         initService.insert_user_member();
         initService.insert_writer_member();
+        initService.insert_frozen_member();
     }
 
     @Component
@@ -43,6 +44,12 @@ public class InitDB {
 
         public void insert_writer_member() {
             Member member = createMember("writerA", "1234", "writer@com", Grade.Writer, Account_info.Active);
+
+            em.persist(member);
+        }
+
+        public void insert_frozen_member() {
+            Member member = createMember("userF", "1234", "userF@com", Grade.User, Account_info.Frozen);
 
             em.persist(member);
         }
