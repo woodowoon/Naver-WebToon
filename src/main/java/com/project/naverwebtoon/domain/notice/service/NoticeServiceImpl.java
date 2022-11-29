@@ -22,7 +22,7 @@ public class NoticeServiceImpl implements NoticeService{
     private final NoticeRepository noticeRepository;
 
     @Override
-    public void createNotice(CreateNoticeDto createNoticeDto, String memberId){
+    public Long createNotice(CreateNoticeDto createNoticeDto, String memberId){
         // 이렇게 오류를 일일이 다 불러오지 않고 처음부터 처리해줄 수 있는 방법은 없을까??
         // 처음부터 오류에 관한 내용을 싹다 처리해버리는 거지.
         // 근데, 그러려면 memberId 를 넘겨야되는데 어디서 넘기지??
@@ -42,6 +42,8 @@ public class NoticeServiceImpl implements NoticeService{
         notice.setHitCount(hitCount);
 
         noticeRepository.saveNotice(notice);
+
+        return notice.getNum();
     }
 
     // TODO : 예외처리는 JPA Data 배우게 되면 그때 orElseThrow 활용
