@@ -34,10 +34,7 @@ public class NoticeServiceImplTest {
         // given
         Member member = createMember("admin", "123", "admin@", Grade.Admin, Account_info.Active);
         em.persist(member);
-        CreateNoticeDto createNoticeDto = new CreateNoticeDto();
-        createNoticeDto.setTitle("Hi");
-        createNoticeDto.setContent("Hello");
-        createNoticeDto.setLock(Lockable.Public);
+        CreateNoticeDto createNoticeDto = createNotice("title", "content", Lockable.Public);
 
         // when
         Long notice_id = noticeService.createNotice(createNoticeDto, "admin");
@@ -52,10 +49,7 @@ public class NoticeServiceImplTest {
         // given
         Member member = createMember("user", "123", "user@", Grade.User, Account_info.Active);
         em.persist(member);
-        CreateNoticeDto createNoticeDto = new CreateNoticeDto();
-        createNoticeDto.setTitle("Hi");
-        createNoticeDto.setContent("Hello");
-        createNoticeDto.setLock(Lockable.Public);
+        CreateNoticeDto createNoticeDto = createNotice("title", "content", Lockable.Public);
 
         // when, then
         Assertions.assertThrows(Exception.class, () -> noticeService.createNotice(createNoticeDto, "user"));
@@ -66,10 +60,7 @@ public class NoticeServiceImplTest {
         // given
         Member member = createMember("writer", "123", "writer@", Grade.Writer, Account_info.Active);
         em.persist(member);
-        CreateNoticeDto createNoticeDto = new CreateNoticeDto();
-        createNoticeDto.setTitle("Hi");
-        createNoticeDto.setContent("Hello");
-        createNoticeDto.setLock(Lockable.Public);
+        CreateNoticeDto createNoticeDto = createNotice("title", "content", Lockable.Public);
 
         // when, then
         Assertions.assertThrows(Exception.class, () -> noticeService.createNotice(createNoticeDto, "writer"));
@@ -80,10 +71,7 @@ public class NoticeServiceImplTest {
         // given
         Member member = createMember("admin", "123", "admin@", Grade.Admin, Account_info.Frozen);
         em.persist(member);
-        CreateNoticeDto createNoticeDto = new CreateNoticeDto();
-        createNoticeDto.setTitle("Hi");
-        createNoticeDto.setContent("Hello");
-        createNoticeDto.setLock(Lockable.Public);
+        CreateNoticeDto createNoticeDto = createNotice("title", "content", Lockable.Public);
 
         // when & then
         Assertions.assertThrows(Exception.class, () -> noticeService.createNotice(createNoticeDto, "admin"));
@@ -94,9 +82,7 @@ public class NoticeServiceImplTest {
         // given
         Member member = createMember("admin", "123", "admin@", Grade.Admin, Account_info.Active);
         em.persist(member);
-        CreateNoticeDto createNoticeDto = new CreateNoticeDto();
-        createNoticeDto.setTitle("Hi");
-        createNoticeDto.setLock(Lockable.Public);
+        CreateNoticeDto createNoticeDto = createNotice("title", null, Lockable.Public);
 
         // when, then
         Assertions.assertThrows(Exception.class, () -> noticeService.createNotice(createNoticeDto, "admin"));
@@ -107,9 +93,7 @@ public class NoticeServiceImplTest {
         // given
         Member member = createMember("admin", "123", "admin@", Grade.Admin, Account_info.Active);
         em.persist(member);
-        CreateNoticeDto createNoticeDto = new CreateNoticeDto();
-        createNoticeDto.setContent("Hi");
-        createNoticeDto.setLock(Lockable.Public);
+        CreateNoticeDto createNoticeDto = createNotice(null, "content", Lockable.Public);
 
         // when, then
         Assertions.assertThrows(Exception.class, () -> noticeService.createNotice(createNoticeDto, "admin"));
@@ -125,6 +109,16 @@ public class NoticeServiceImplTest {
         Member.setInfo(info);
 
         return Member;
+    }
+
+    private CreateNoticeDto createNotice(String title, String content, Lockable lock) {
+        CreateNoticeDto createNoticeDto = new CreateNoticeDto();
+
+        createNoticeDto.setTitle(title);
+        createNoticeDto.setContent(content);
+        createNoticeDto.setLock(lock);
+
+        return createNoticeDto;
     }
 
 }
