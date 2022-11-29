@@ -1,8 +1,8 @@
 package com.project.naverwebtoon;
 
-import com.project.naverwebtoon.domain.member.entity.Account_info;
-import com.project.naverwebtoon.domain.member.entity.Grade;
-import com.project.naverwebtoon.domain.member.entity.Member;
+import com.project.naverwebtoon.domain.member.Account_info;
+import com.project.naverwebtoon.domain.member.Grade;
+import com.project.naverwebtoon.domain.member.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +21,7 @@ public class InitDB {
         initService.insert_admin_member();
         initService.insert_user_member();
         initService.insert_writer_member();
+        initService.insert_frozen_member();
     }
 
     @Component
@@ -47,6 +48,12 @@ public class InitDB {
             em.persist(member);
         }
 
+        public void insert_frozen_member() {
+            Member member = createMember("userF", "1234", "userF@com", Grade.User, Account_info.Frozen);
+
+            em.persist(member);
+        }
+
         private Member createMember(String Id, String pwd, String email, Grade grade, Account_info info) {
             Member admin_Member = new Member();
 
@@ -57,9 +64,6 @@ public class InitDB {
             admin_Member.setInfo(info);
 
             return admin_Member;
-
         }
-
     }
-
 }
